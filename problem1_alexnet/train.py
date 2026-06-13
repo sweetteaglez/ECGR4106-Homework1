@@ -83,7 +83,7 @@ print("Validation size:", len(val_dataset))
 print("Test size:", len(test_dataset))
 print("Classes:", classes)
 
-#Train baseline and dropout models
+# Train baseline and dropout models
 baseline_model = ModifiedAlexNet(dropout_rate=0.0).to(device)
 
 print("Modified AlexNet parameter count:", count_parameters(baseline_model))
