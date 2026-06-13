@@ -15,3 +15,34 @@
 ## GitHub Repository
 
 This repository contains all source code, training scripts, and results required for Homework 1.
+
+## Repository Structure
+
+problem1_alexnet/
+- alexnet.py
+- train.py
+- test.py
+- results/
+
+problem2_vgg/
+- vgg.py
+- train.py
+- test.py
+- results/
+
+problem3_resnet/
+- resnet.py
+- train.py
+- test.py
+- results/
+
+## Results
+
+The results folders contain:
+
+- Training loss curves
+- Validation accuracy curves
+- Confusion matrices
+- Architecture comparison figures
+
+Additional analysis and discussion are included in the final report submission.
