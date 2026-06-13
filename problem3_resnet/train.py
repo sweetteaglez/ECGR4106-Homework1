@@ -9,6 +9,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from test import test_resnet_model
 
 os.makedirs("problem3_results", exist_ok=True)
 
@@ -112,3 +113,11 @@ def train_resnet_model(model_type, dropout_rate, model_name):
     time_per_epoch = total_time / RESNET_EPOCHS
 
     return model, train_losses, val_losses, val_accuracies, time_per_epoch
+
+test_accuracy, cm = test_resnet_model(
+    model,
+    model_name,
+    test_loader,
+    device,
+    classes
+)
