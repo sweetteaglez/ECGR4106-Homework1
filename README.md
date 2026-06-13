@@ -2,6 +2,8 @@
 
 **Name:** Samantha Gonzalez
 
+**Student ID:** 801353957
+
 **Course:** ECGR 4106 Introduction to Deep Learning
 
 **Dataset:** CIFAR-10
