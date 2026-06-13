@@ -16,3 +16,9 @@ RESNET_EPOCHS = 50
 
 print("Starting Problem 3: ResNet-11 vs ResNet-18")
 print("Using device:", device)
+
+resnet11_test = ResNet11().to(device)
+resnet18_test = ResNet18().to(device)
+
+print("ResNet-11 parameter count:", count_parameters(resnet11_test))
+print("ResNet-18 parameter count:", count_parameters(resnet18_test))
