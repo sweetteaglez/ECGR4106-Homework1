@@ -1,3 +1,7 @@
+import torch
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
 def test_model(model, model_name):
     model.eval()
 
