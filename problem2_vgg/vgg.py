@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class AdaptedVGGNet(nn.Module):
     def __init__(self, num_classes=10, dropout_rate=0.0, use_batch_norm=False):
         super(AdaptedVGGNet, self).__init__()
@@ -64,4 +67,5 @@ class AdaptedVGGNet(nn.Module):
         x = self.classifier(x)
         return x
 
-
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
