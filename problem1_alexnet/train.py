@@ -14,6 +14,9 @@ import numpy as np
 import os
 import time
 
+from alexnet import ModifiedAlexNet, count_parameters
+from test import test_model, visualize_first_layer_filters
+
 # ECGR 4106 Homework 1 - Problem 1
 # Name: Samantha Gonzalez
 # Modified AlexNet on CIFAR-10
@@ -80,7 +83,7 @@ print("Validation size:", len(val_dataset))
 print("Test size:", len(test_dataset))
 print("Classes:", classes)
 
-###
+#Train baseline and dropout models
 baseline_model = ModifiedAlexNet(dropout_rate=0.0).to(device)
 
 print("Modified AlexNet parameter count:", count_parameters(baseline_model))
@@ -88,7 +91,6 @@ print("Original AlexNet parameter count: about 61,000,000")
 
 summary(baseline_model, (3, 32, 32))
 
-###
 def train_one_model(dropout_rate, model_name):
     model = ModifiedAlexNet(dropout_rate=dropout_rate).to(device)
 
@@ -173,7 +175,6 @@ def train_one_model(dropout_rate, model_name):
 
     return model, train_losses, val_losses, val_accuracies, time_per_epoch
 
-###
 experiments = {
     "baseline": 0.0,
     "dropout_03": 0.3,
@@ -193,7 +194,7 @@ for model_name, dropout_rate in experiments.items():
         model_name
     )
 
-    test_accuracy, cm = test_model(model, model_name)
+    test_accuracy, cm = test_model(model, model_name, test_loader, device, classes)
 
     torch.save(model.state_dict(), f"problem1_results/{model_name}_model.pth")
 
@@ -211,7 +212,6 @@ for model_name, dropout_rate in experiments.items():
     print(f"{model_name} Test Accuracy: {test_accuracy:.2f}%")
     print(f"{model_name} Time per Epoch: {time_per_epoch:.2f} seconds")
 
-###
 # Loss comparison
 plt.figure(figsize=(10, 6))
 
@@ -242,8 +242,8 @@ plt.grid(True)
 plt.savefig("problem1_results/alexnet_validation_accuracy_comparison.png")
 plt.show()
 
+visualize_first_layer_filters(results["baseline"]["model"])
 
-###
 print("Final Problem 1 Results")
 print("Random Seed:", SEED)
 print("Batch Size:", BATCH_SIZE)
