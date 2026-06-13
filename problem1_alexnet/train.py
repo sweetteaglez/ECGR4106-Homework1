@@ -244,6 +244,8 @@ plt.show()
 
 visualize_first_layer_filters(results["baseline"]["model"])
 
+# Final results printout
+
 print("Final Problem 1 Results")
 print("Random Seed:", SEED)
 print("Batch Size:", BATCH_SIZE)
