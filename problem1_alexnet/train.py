@@ -172,3 +172,41 @@ def train_one_model(dropout_rate, model_name):
     time_per_epoch = total_time / EPOCHS
 
     return model, train_losses, val_losses, val_accuracies, time_per_epoch
+
+###
+experiments = {
+    "baseline": 0.0,
+    "dropout_03": 0.3,
+    "dropout_05": 0.5
+}
+
+results = {}
+
+for model_name, dropout_rate in experiments.items():
+    print("\n====================================")
+    print("Training:", model_name)
+    print("Dropout rate:", dropout_rate)
+    print("====================================")
+
+    model, train_losses, val_losses, val_accuracies, time_per_epoch = train_one_model(
+        dropout_rate,
+        model_name
+    )
+
+    test_accuracy, cm = test_model(model, model_name)
+
+    torch.save(model.state_dict(), f"problem1_results/{model_name}_model.pth")
+
+    results[model_name] = {
+        "model": model,
+        "dropout_rate": dropout_rate,
+        "train_losses": train_losses,
+        "val_losses": val_losses,
+        "val_accuracies": val_accuracies,
+        "test_accuracy": test_accuracy,
+        "parameters": count_parameters(model),
+        "time_per_epoch": time_per_epoch
+    }
+
+    print(f"{model_name} Test Accuracy: {test_accuracy:.2f}%")
+    print(f"{model_name} Time per Epoch: {time_per_epoch:.2f} seconds")
