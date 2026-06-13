@@ -210,3 +210,34 @@ for model_name, dropout_rate in experiments.items():
 
     print(f"{model_name} Test Accuracy: {test_accuracy:.2f}%")
     print(f"{model_name} Time per Epoch: {time_per_epoch:.2f} seconds")
+
+###
+# Loss comparison
+plt.figure(figsize=(10, 6))
+
+for model_name in results:
+    plt.plot(results[model_name]["train_losses"], label=f"{model_name} train loss")
+    plt.plot(results[model_name]["val_losses"], label=f"{model_name} val loss")
+
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.title("Modified AlexNet Training and Validation Loss")
+plt.legend()
+plt.grid(True)
+plt.savefig("problem1_results/alexnet_loss_comparison.png")
+plt.show()
+
+
+# Validation accuracy comparison
+plt.figure(figsize=(10, 6))
+
+for model_name in results:
+    plt.plot(results[model_name]["val_accuracies"], label=f"{model_name} val accuracy")
+
+plt.xlabel("Epoch")
+plt.ylabel("Validation Accuracy (%)")
+plt.title("Modified AlexNet Validation Accuracy")
+plt.legend()
+plt.grid(True)
+plt.savefig("problem1_results/alexnet_validation_accuracy_comparison.png")
+plt.show()
