@@ -42,7 +42,7 @@ def test_model(model, model_name):
 
     return test_accuracy, cm
 
-###
+# Visualize first convolutional layer filters
 def visualize_first_layer_filters(model):
     first_conv_layer = model.features[0]
     filters = first_conv_layer.weight.data.cpu()
@@ -62,6 +62,3 @@ def visualize_first_layer_filters(model):
     plt.tight_layout()
     plt.savefig("problem1_results/first_layer_filters.png")
     plt.show()
-
-
-visualize_first_layer_filters(results["baseline"]["model"])
