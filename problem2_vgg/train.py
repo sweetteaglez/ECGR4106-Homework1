@@ -8,7 +8,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 from vgg import AdaptedVGGNet, count_parameters
 from test import test_vgg_model
