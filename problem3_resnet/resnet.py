@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class BasicBlock(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1):
         super(BasicBlock, self).__init__()
@@ -143,4 +146,5 @@ def ResNet18(dropout_rate=0.0):
         dropout_rate=dropout_rate
     )
 
-
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
