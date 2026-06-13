@@ -1,3 +1,7 @@
+import torch
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
 def test_resnet_model(model, model_name, test_loader, device, classes):
     model.eval()
 
