@@ -241,3 +241,33 @@ plt.legend()
 plt.grid(True)
 plt.savefig("problem1_results/alexnet_validation_accuracy_comparison.png")
 plt.show()
+
+
+###
+print("Final Problem 1 Results")
+print("Random Seed:", SEED)
+print("Batch Size:", BATCH_SIZE)
+print("Epochs:", EPOCHS)
+print("Learning Rate:", LEARNING_RATE)
+print("Optimizer: SGD with momentum = 0.9")
+print("Scheduler: StepLR, step_size = 15, gamma = 0.1")
+print("Device:", device)
+
+if torch.cuda.is_available():
+    print("Hardware:", torch.cuda.get_device_name(0))
+else:
+    print("Hardware: CPU")
+
+print("\nModel Results:")
+print("------------------------------------------------------------")
+print("Model\t\tDropout\tParams\t\tTest Acc\tTime/Epoch")
+print("------------------------------------------------------------")
+
+for model_name, data in results.items():
+    print(
+        f"{model_name}\t"
+        f"{data['dropout_rate']}\t"
+        f"{data['parameters']}\t"
+        f"{data['test_accuracy']:.2f}%\t\t"
+        f"{data['time_per_epoch']:.2f}s"
+    )
