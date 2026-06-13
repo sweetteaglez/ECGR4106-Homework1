@@ -37,3 +37,27 @@ def test_model(model, model_name):
     plt.show()
 
     return test_accuracy, cm
+
+###
+def visualize_first_layer_filters(model):
+    first_conv_layer = model.features[0]
+    filters = first_conv_layer.weight.data.cpu()
+
+    # Normalize filters for display
+    filters = (filters - filters.min()) / (filters.max() - filters.min())
+
+    plt.figure(figsize=(8, 8))
+
+    for i in range(16):
+        plt.subplot(4, 4, i + 1)
+        img = filters[i].permute(1, 2, 0)
+        plt.imshow(img)
+        plt.axis("off")
+
+    plt.suptitle("First Convolutional Layer Filters - Baseline AlexNet")
+    plt.tight_layout()
+    plt.savefig("problem1_results/first_layer_filters.png")
+    plt.show()
+
+
+visualize_first_layer_filters(results["baseline"]["model"])
